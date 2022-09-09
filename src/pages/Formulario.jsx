@@ -53,8 +53,9 @@ export const Formulario = () => {
         <Formik
           initialValues={post}
           validationSchema={Yup.object({
-            title: Yup.string(),
+            title: Yup.string().required("El titulo es requerido"),
             descripcion: Yup.string(),
+            image: Yup.mixed().required("La imagen es requerida"),
           })}
           onSubmit={async (values, actions) => {
             // console.log(values)
@@ -161,6 +162,11 @@ export const Formulario = () => {
                 }
                 name="image"
                 className=" px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+              />
+              <ErrorMessage
+                component={"p"}
+                className=" text-red-300 text-sm "
+                name="image"
               />
 
               <button
