@@ -30,7 +30,7 @@ const Mexicali = () => {
       spaceBetween={10}
       centeredSlides={true}
       autoplay={{
-        delay: 2000,
+        delay: 7000,
         disableOnInteraction: false
       }}
       navigation={true}
