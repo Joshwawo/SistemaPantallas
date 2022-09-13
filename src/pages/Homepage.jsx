@@ -7,6 +7,7 @@ document.body.style.backgroundColor = "#171717";
 
 export const Homepage = () => {
   const { posts } = usePost();
+  // console.log(posts);
 
   const renderMain = () => {
     if (posts.length === 0)

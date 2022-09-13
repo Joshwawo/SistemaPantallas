@@ -5,9 +5,38 @@ import axios from "axios";
 // let url = "http://localhost:3001";
 let url ="https://pantallas.onrender.com"
 // const url = "https://screensapi.azurewebsites.net"
+// let url = "http://localhost:3001/api"
 
 
 const TOKEN = import.meta.env.VITE_TOKEN_JWT
+
+// export const FetchPostHermosillo = async () => {
+//   // const url = "http://localhost:3001/postsCompanies?company=hermosillo";
+//   // const url = "https://screensapi.azurewebsites.net/postsCompanies?company=hermosillo"
+  
+//   const url = "https://pantallas.onrender.com/postsCompanies?company=hermosillo"
+
+
+//   return await axios.get(url,{
+//     headers: {
+//       "Content-Type": "application/json",
+//       "x-access-token": TOKEN,
+
+//   }});
+
+//   // return respuesta.data;
+//   // setPostsHermosillo([...respuesta.data], respuesta.data);
+//   // console.log(respuesta.data);
+// };
+
+export const getPostsRequestHermosillo = async () => {
+  return await axios.get(`${url}/postsCompanies?company=hermosillo`, {
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": TOKEN,
+    },
+  });
+}
 
 export const getPostRequest = async () => {
   return await axios.get(`${url}/posts`, {

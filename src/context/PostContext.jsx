@@ -5,8 +5,10 @@ import {
   deletePostRequest,
   getPostByIdRequest,
   updatePostRequest,
-  
+  getPostsRequestHermosillo,
 } from "../api/posts";
+
+import axios from "axios";
 //Esto es el contexto
 const postContext = createContext();
 
@@ -15,26 +17,49 @@ export const usePost = () => {
   return context;
 };
 
+// import second from 'first'
+
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-  const [speed, setSpeed] = useState(200)
+  const [speed, setSpeed] = useState(200);
+  const [postsHermosillo, setPostsHermosillo] = useState([]);
+
+  // const getPosts = async () => {
+  //   const respuesta = await getPostRequest();
+  //   setPosts(respuesta.data);
+  // };
 
   const getPosts = async () => {
     const respuesta = await getPostRequest();
     setPosts(respuesta.data);
+    // setPosts([...posts], respuesta.data);
   };
 
-  const getPostsCompany = async ()=>{
-    const respuesta = await getCompanyRequest();
-    // console.log(respuesta.data);
-  }
+  const getPostsTest = async () => {
+    try {
+      const respuesta = await getPostRequest();
+      setPosts(...posts, respuesta.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getPostHermosillo = async () => {
+    try {
+      const respuesta = await getPostsRequestHermosillo();
+
+      // setPostsHermosillo(posts.filter((post) => post._id !== id));
+
+      // console.log(respuesta.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const createPost = async (post) => {
     try {
       const respuesta = await createPostRequest(post);
       setPosts([...posts, respuesta.data]);
-      // console.log([...posts, respuesta.data]
-      // console.log(post)
     } catch (error) {
       console.log(error);
     }
@@ -65,14 +90,30 @@ export const PostProvider = ({ children }) => {
     setPosts(posts.map((post) => (post._id === id ? respuesta.data : post)));
   };
 
+  //actulizar el estado de los posts sin actulizar la pagina
+
+  // useEffect(() => {
+
+  //   getPosts();
+  //   getPostHermosillo();
+  // }, [posts]);
+
   useEffect(() => {
     getPosts();
-   
   }, []);
+
+  // useEffect(() => {
+  //   getPosts();
+  // }, [ ]);
+  // useEffect(() => {
+  //   getPostHermosillo();
+  // }, []);
+
   return (
     <postContext.Provider
       value={{
         posts,
+        postsHermosillo,
         getPosts,
         createPost,
         deletePost,
@@ -80,12 +121,11 @@ export const PostProvider = ({ children }) => {
         updatePost,
         speed,
         setSpeed,
-        
+        getPostHermosillo,
+        getPostsTest,
       }}
     >
       {children}
     </postContext.Provider>
   );
 };
-
-// export default PostContext

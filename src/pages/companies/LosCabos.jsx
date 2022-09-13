@@ -9,7 +9,8 @@ const LosCabos = () => {
 
 
   const FetchPost = async () => {
-    const url = "https://pantallas.onrender.com/postsCompanies?company=loscabos";
+    const url = "http://localhost:3001/postsCompanies?company=loscabos";
+    // const url = "https://pantallas.onrender.com/postsCompanies?company=loscabos";
     
 
     const respuesta = await axios.get(url,{

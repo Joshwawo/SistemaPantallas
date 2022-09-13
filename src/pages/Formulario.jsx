@@ -55,7 +55,11 @@ export const Formulario = () => {
           validationSchema={Yup.object({
             title: Yup.string().required("El titulo es requerido"),
             descripcion: Yup.string(),
-            image: Yup.mixed().required("La imagen es requerida"),
+            image: Yup.mixed().required(
+              params.id?.length > 1
+                ? "No es necesario"
+                : "La imagen es requerida"
+            ),
           })}
           onSubmit={async (values, actions) => {
             // console.log(values)
@@ -111,9 +115,7 @@ export const Formulario = () => {
                 name="company"
                 className=" bg-gray-400 px-2 py-1 text-gray-800"
               >
-                <option value="" >
-                  Seleccione una sucursal
-                </option>
+                <option value="">Seleccione una sucursal</option>
                 <option value="hermosillo">Hermosillo</option>
                 <option value="nogales">Nogales</option>
                 <option value="loscabos">Los Cabos</option>

@@ -8,7 +8,8 @@ const Nogales = () => {
   const TOKEN = import.meta.env.VITE_TOKEN_JWT
 
   const FetchPost = async () => {
-    const url = "https://pantallas.onrender.com/postsCompanies?company=nogales";
+    // const url = "https://pantallas.onrender.com/postsCompanies?company=nogales";
+    const url = "http://localhost:3001/postsCompanies?company=nogales";
 
     const respuesta = await axios.get(url,{
       headers: {
